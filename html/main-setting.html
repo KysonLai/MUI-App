@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>Hello MUI</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+		<link rel="stylesheet" href="../css/mui.min.css">
+		<link rel="stylesheet" href="../css/style.css">
+		<style>
+			html,body {
+				background-color: white;
+			}
+		</style>
+	</head>
+
+	<body>
+	<header class="mui-bar mui-bar-nav">
+	    <a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+	    <h1 class="mui-title">设置</h1>
+	</header>
+		<div class="mui-content">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">
+					<a class="mui-navigate-right dark-big">意见反馈</a>
+				</li>
+				<li id="cache" class="mui-table-view-cell">
+					<a class="mui-navigate-right dark-big">清除缓存</a>
+				</li>
+				<li id="about" class="mui-table-view-cell">
+					<a class="mui-navigate-right dark-big">关于我们</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+		mui.init({
+			swipeBack:true //启用右滑关闭功能
+		});
+		//给about节点添加点击事件
+		document.getElementById('about').addEventListener('tap',function(){
+			//打开关于我们页面
+			mui.openWindow({
+				id:'about',
+				url:'./about.html'
+			});
+		});
+		mui.plusReady(function(){
+			//给cache节点添加点击事件，清除缓存
+			document.getElementById('cache').addEventListener('tap',function(){
+				plus.cache.clear(function(){
+					mui.toast('清除缓存成功');
+				});
+			});
+		})
+	</script>
+</html>
